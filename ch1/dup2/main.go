@@ -21,12 +21,14 @@ func main() {
 		countLines(os.Stdin, counts)
 	} else {
 		for _, arg := range files {
+			// file and error
 			f, err := os.Open(arg)
 			if err != nil {
 				fmt.Fprintf(os.Stderr, "dup2: %v\n", err)
 				continue
 			}
 			countLines(f, counts)
+			// close the file
 			f.Close()
 		}
 	}
